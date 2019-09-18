@@ -1,0 +1,31 @@
+import paho.mqtt.client as mq
+import time
+import _pickle as pk
+import cv2 as cv
+import uuid
+
+def on_message(client, userdata, msg):
+    print("Message received ")    
+    send_to_cloud(msg.payload)
+
+def save_to_cloud(text):
+    filename = str(uuid.uuid4())+'.png'
+    frame = pk.loads(text)
+    cv.imwrite("/mnt/mybucket/" + filename, frame)
+
+broker = "172.18.0.2"
+#broker = "localhost"
+#broker_cloud = "169.62.13.213"
+
+client = mq.Client("python4")
+client.on_message = on_message
+
+client.connect(broker)
+while True:
+    client.loop_start()
+    client.subscribe("pictures/faces",1)
+    time.sleep(5)
+    client.loop_stop()
+time.sleep(3)
+#client.disconnect()
+
