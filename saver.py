@@ -10,6 +10,7 @@ def on_message(client, userdata, msg):
 
 def save_to_cloud(text):
     filename = str(uuid.uuid4())+'.png'
+    print(filename)
     frame = pk.loads(text)
     cv.imwrite("/mnt/mybucket/" + filename, frame)
     print("Wrote file /mnt/mybucket/" + filename)
