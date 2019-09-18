@@ -6,14 +6,15 @@ import uuid
 
 def on_message(client, userdata, msg):
     print("Message received ")    
-    print(msg.payload)
+    #print(msg.payload)
     send_to_cloud(msg.payload)
     
 
 def save_to_cloud(text):
     filename = str(uuid.uuid4())+'.png'
-    print(filename)
+    print("Writing... /mnt/mybucket/" + filename)
     frame = pk.loads(text)
+    print(type(frame))
     cv.imwrite("/mnt/mybucket/" + filename, frame)
     print("Wrote file /mnt/mybucket/" + filename)
 
