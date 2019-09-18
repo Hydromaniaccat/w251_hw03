@@ -6,7 +6,7 @@ import uuid
 
 def on_message(client, userdata, msg):
     print("Message received ")    
-    print(msg)
+    print(msg.payload)
     send_to_cloud(msg.payload)
     
 
