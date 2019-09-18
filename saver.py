@@ -1,6 +1,6 @@
 import paho.mqtt.client as mq
 import time
-import _pickle as pk
+import pickle as pk
 import cv2 as cv
 import uuid
 
