@@ -12,6 +12,7 @@ def save_to_cloud(text):
     filename = str(uuid.uuid4())+'.png'
     frame = pk.loads(text)
     cv.imwrite("/mnt/mybucket/" + filename, frame)
+    print("Wrote file /mnt/mybucket/" + filename)
 
 broker = "172.18.0.2"
 #broker = "localhost"
